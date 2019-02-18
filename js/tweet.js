@@ -6,9 +6,20 @@ $(document).ready(function() {
         method: "POST",
         data: $("#form_tweet").serialize(),
         success: function(data) {
-          console.log(data);
+          $("#text_tweet").val("");
+          atualizaTweet();
         }
       });
     }
   });
+
+  function atualizaTweet() {
+    $.ajax({
+      url: "get_tweet.php",
+      success: function(data) {
+        $("#tweets").html(data);
+      }
+    });
+  }
+  atualizaTweet();
 });
